@@ -72,3 +72,6 @@ eBird 官方公共 API 要求使用个人 API Key。当前版本将默认 API Ke
 - eBird 上海区域：https://ebird.org/region/CN-31
 
 观测频次表示来源记录次数，不等同于实际鸟只数量。
+
+如果坚持要使用网页版，请去：https://www.pheatherdust.com/apps/ebirds-shanghai/index.html
+
