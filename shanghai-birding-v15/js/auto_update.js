@@ -4,7 +4,11 @@
   let started = false;
 
   function isLocalAutoUpdateAvailable() {
-    return location.protocol === 'http:' || location.protocol === 'https:';
+    // Only the standalone Python launcher (start_app.py) serves /__auto_update.
+    // When embedded under Birds Remain (/apps/ebirds-shanghai/), skip quietly.
+    if (location.protocol !== 'http:' && location.protocol !== 'https:') return false;
+    if (/\/apps\/ebirds-shanghai\//.test(location.pathname)) return false;
+    return true;
   }
 
   async function reloadExternalData() {
@@ -35,6 +39,9 @@
           body: '{}',
           signal: AbortSignal.timeout ? AbortSignal.timeout(180000) : undefined
         });
+        if (response.status === 404) {
+          return { available: false, updated: false, skipped: true };
+        }
         if (!response.ok) throw new Error(`auto-update HTTP ${response.status}`);
         const result = await response.json();
         if (result.success) {

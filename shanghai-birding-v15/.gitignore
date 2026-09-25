@@ -1,0 +1,16 @@
+.DS_Store
+Thumbs.db
+*.log
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+.env
+.env.*
+*.local
+.idea/
+.vscode/
+node_modules/
+.playwright/
+test-results/

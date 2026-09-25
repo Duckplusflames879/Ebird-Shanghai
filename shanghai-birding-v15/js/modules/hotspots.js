@@ -156,13 +156,38 @@
     throw lastError || new Error('Leaflet CDN failed to load.');
   }
 
+  function leafletImageBase() {
+    return new URL('vendor/leaflet/images/', window.location.href).href;
+  }
+
   function configureLeafletIcons(L) {
     if (!L?.Icon?.Default?.mergeOptions) return;
-    const base = LEAFLET_LOCAL_CSS.replace(/leaflet\.css$/, 'images/');
+    const base = leafletImageBase();
+    // Leaflet often auto-detects a wrong imagePath (page dir), causing
+    // requests like /apps/ebirds-shanghai/marker-icon.png → 404.
+    L.Icon.Default.imagePath = base;
     L.Icon.Default.mergeOptions({
       iconUrl: `${base}marker-icon.png`,
       iconRetinaUrl: `${base}marker-icon-2x.png`,
-      shadowUrl: `${base}marker-shadow.png`
+      shadowUrl: `${base}marker-shadow.png`,
+      iconSize: [25, 41],
+      iconAnchor: [12, 41],
+      popupAnchor: [1, -34],
+      tooltipAnchor: [16, -28],
+      shadowSize: [41, 41]
+    });
+  }
+
+  function defaultMarkerIcon(L) {
+    const base = leafletImageBase();
+    return L.icon({
+      iconUrl: `${base}marker-icon.png`,
+      iconRetinaUrl: `${base}marker-icon-2x.png`,
+      shadowUrl: `${base}marker-shadow.png`,
+      iconSize: [25, 41],
+      iconAnchor: [12, 41],
+      popupAnchor: [1, -34],
+      shadowSize: [41, 41]
     });
   }
 
@@ -344,8 +369,15 @@
   function renderEmptyState(message, actionLabel='重新加载') {
     document.getElementById('app').innerHTML = `<section class="card"><div class="empty"><strong>${AppUtils.escapeHtml(message)}</strong><br><span class="muted">请在“设置”中保存 eBird API Key 后直接获取最近 7 日上海热点观测，也可以导入 eBird 最近 7 日 JSON 文件。</span><div style="margin-top:14px;display:flex;flex-direction:column;align-items:center;gap:8px"><input id="import-ebird-empty" type="file" accept="application/json,.json" class="input" aria-label="导入最近7日 eBird 数据"><button class="button" id="retry-hotspots" type="button">${AppUtils.escapeHtml(actionLabel)}</button></div></div></section>`;
     document.getElementById('retry-hotspots')?.addEventListener('click', async () => {
-      const result = await refreshLiveData.call(this, {force:true});
-      if (result.success) await render.call(this); else AppToast.show(result.error || '无法获取 eBird 数据，请检查设置。');
+      const btn = document.getElementById('retry-hotspots');
+      if (btn) { btn.disabled = true; btn.textContent = '获取中…'; }
+      try {
+        const result = await refreshLiveData.call(this, {force:true});
+        if (result.success) await render.call(this);
+        else AppToast.show(result.error || '无法获取 eBird 数据，请检查网络或改用导入 JSON。');
+      } finally {
+        if (btn) { btn.disabled = false; btn.textContent = actionLabel; }
+      }
     });
     document.getElementById('import-ebird-empty')?.addEventListener('change', async (event) => {
       const file = event.target.files?.[0];
@@ -498,7 +530,11 @@
       if (!Number.isFinite(lat) || !Number.isFinite(lon)) return;
       const [mapLat, mapLon] = toMapLatLng.call(this, lat, lon);
       bounds.push([mapLat, mapLon]);
-      const marker = L.marker([mapLat, mapLon], {keyboard:false, riseOnHover:true}).addTo(this.map).bindPopup(popupHtml(h));
+      const marker = L.marker([mapLat, mapLon], {
+        keyboard: false,
+        riseOnHover: true,
+        icon: defaultMarkerIcon(L)
+      }).addTo(this.map).bindPopup(popupHtml(h));
       if (marker.on) marker.on('click', () => select.call(this, h.id));
       this.markers.set(h.id, marker);
     });

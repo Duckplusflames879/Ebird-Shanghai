@@ -286,28 +286,47 @@
     url.searchParams.set('hotspot', 'true');
     url.searchParams.set('maxResults', '10000');
     url.searchParams.set('sppLocale', 'zh_SIM');
-    let response;
-    try {
-      response = await fetch(url.toString(), {headers:{'X-eBirdApiToken':apiKey}, cache:'no-store'});
-    } catch (error) {
-      // A file:// page may fail the custom-header CORS preflight. eBird also documents
-      // API-key query-string access for hotspot endpoints, so retry the same GET with key=.
-      try {
-        const fallbackUrl = new URL(url.toString());
-        fallbackUrl.searchParams.set('key', apiKey);
-        response = await fetch(fallbackUrl.toString(), {cache:'no-store'});
-      } catch (fallbackError) {
-        return {success:false,error:`无法连接 eBird API：${fallbackError?.message || error?.message || '网络错误'}`};
-      }
-    }
-    if (!response.ok) {
-      let detail = '';
-      try { detail = await response.text(); } catch (_) {}
-      if (response.status === 403 || response.status === 401) return {success:false,error:'eBird API Key 无效或无权限。请在设置中更新个人 API Key。'};
-      return {success:false,error:`eBird API 返回 HTTP ${response.status}${detail ? `：${detail.slice(0,160)}` : ''}`};
-    }
+
     let rows;
-    try { rows = await response.json(); } catch (_) { return {success:false,error:'eBird 返回的数据不是有效 JSON。'}; }
+    // Prefer same-origin proxy so Cloudflare tunnel / China clients don't need
+    // direct browser access to api.ebird.org.
+    try {
+      const proxy = await fetch('/api/ebird/recent', { cache: 'no-store' });
+      if (proxy.ok) {
+        const payload = await proxy.json();
+        rows = Array.isArray(payload) ? payload : payload?.rows;
+      } else {
+        let detail = '';
+        try { detail = await proxy.text(); } catch (_) {}
+        console.warn('[eBird] proxy failed', proxy.status, detail.slice(0, 160));
+      }
+    } catch (proxyError) {
+      console.warn('[eBird] proxy unavailable', proxyError);
+    }
+
+    if (!Array.isArray(rows)) {
+      let response;
+      try {
+        response = await fetch(url.toString(), {headers:{'X-eBirdApiToken':apiKey}, cache:'no-store'});
+      } catch (error) {
+        try {
+          const fallbackUrl = new URL(url.toString());
+          fallbackUrl.searchParams.set('key', apiKey);
+          response = await fetch(fallbackUrl.toString(), {cache:'no-store'});
+        } catch (fallbackError) {
+          return {success:false,error:`无法连接 eBird API：${fallbackError?.message || error?.message || '网络错误'}（若在国内访问，请通过本站代理或导入 JSON）`};
+        }
+      }
+      if (!response.ok) {
+        let detail = '';
+        try { detail = await response.text(); } catch (_) {}
+        if (response.status === 403 || response.status === 401) return {success:false,error:'eBird API Key 无效或无权限。请在设置中更新个人 API Key。'};
+        return {success:false,error:`eBird API 返回 HTTP ${response.status}${detail ? `：${detail.slice(0,160)}` : ''}`};
+      }
+      try { rows = await response.json(); } catch (_) { return {success:false,error:'eBird 返回的数据不是有效 JSON。'}; }
+    }
+
+    if (!Array.isArray(rows)) return {success:false,error:'eBird 返回的数据格式无效。'};
     const aggregated = aggregateObservations(rows, window);
     if (!aggregated.hotspots.length) return {success:false,error:'eBird 最近 7 日未返回上海热点观测，未覆盖已有数据。'};
     const payload = {format:IMPORT_FORMAT,version:1,app:'shanghai-birding',source:SOURCE,sourceUrl:SOURCE_URL,apiUrl:url.toString().replace(/([?&])/, '$1'),regionCode:REGION_CODE,generatedAt:new Date().toISOString(),retrievedAt:aggregated.meta.retrievedAt,observationWindow:window,hotspotData:aggregated.meta,hotspots:aggregated.hotspots};
