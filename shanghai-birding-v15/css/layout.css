@@ -1,0 +1,7 @@
+body { background: var(--bg); color: var(--text); }
+.app-shell { min-height: 100vh; display: flex; }
+.sidebar { width: var(--sidebar-width); flex: 0 0 var(--sidebar-width); background: #20352c; color: #eef5f0; padding: 28px 18px; position: sticky; top: 0; height: 100vh; }
+.main-content { flex: 1; min-width: 0; padding: 30px 36px 48px; }
+.page-header { margin: 0 auto 24px; max-width: 1180px; }
+.content-area { max-width: 1180px; margin: 0 auto; }
+@media (max-width: 900px) { .main-content { padding: 22px; } .sidebar { width: 200px; flex-basis: 200px; } }

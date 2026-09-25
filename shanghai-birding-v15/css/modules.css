@@ -1,0 +1,85 @@
+.hero { padding: 22px; }
+.weather-summary { display: flex; gap: 12px; align-items: center; }
+.weather-icon { font-size: 30px; }
+.advice { background: var(--accent-soft); border-radius: 12px; padding: 12px 14px; line-height: 1.65; }
+.memo { min-height: 180px; }
+.progress-track { height: 12px; border-radius: 999px; background: #edf1ef; overflow: hidden; }
+.progress-bar { height: 100%; background: var(--accent); border-radius: inherit; transition: width .2s ease; }
+.progress-meta { display: flex; justify-content: space-between; margin-bottom: 10px; }
+.record-item { padding: 16px 20px; border-top: 1px solid var(--border); }
+.record-item:first-child { border-top: 0; }
+.record-main { display: flex; justify-content: space-between; gap: 20px; }
+.record-title { font-weight: 700; }
+.record-sub { margin-top: 4px; color: var(--text-muted); font-size: 13px; }
+.record-actions { display: flex; gap: 7px; }
+.hotspot-list { display: grid; gap: 10px; }
+.hotspot-item { padding: 14px 16px; border: 1px solid var(--border); border-radius: 12px; cursor: pointer; }
+.hotspot-item.active { border-color: var(--accent); background: var(--accent-soft); }
+.obs-row { display:flex; justify-content:space-between; padding: 10px 0; border-bottom:1px solid var(--border); }
+.lexicon-item { padding: 16px 18px; border: 1px solid var(--border); border-radius: 12px; }
+.lexicon-item.discovered { border-color: #c9ded1; background: #fbfefc; }
+.lexicon-title { display:flex; align-items:center; justify-content:space-between; gap:10px; }
+.tabs { display:flex; gap:8px; flex-wrap:wrap; }
+.tab { border: 1px solid var(--border); background:#fff; border-radius:999px; padding:7px 11px; }
+.tab.active { background:var(--accent); border-color:var(--accent); color:#fff; }
+.settings-section { padding:20px; }
+.status-row { display:flex; justify-content:space-between; padding:9px 0; border-bottom:1px solid var(--border); }
+.status-ok { color:var(--accent); font-weight:650; }
+.error-text { color:var(--danger); font-size:13px; margin-top:6px; }
+@media (max-width: 860px) { .grid-2, .grid-3, .form-grid { grid-template-columns: 1fr; } .form-field.full { grid-column: auto; } }
+.memo-list { display:grid; gap:14px; }
+.memo-item { border:1px solid var(--border); border-radius:12px; padding:14px; background:#fff; }
+.memo-item-header { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:9px; }
+.memo-item .memo { min-height:110px; }
+.species-row { display:grid; grid-template-columns:minmax(0,1fr) 130px auto; gap:10px; align-items:start; margin-bottom:10px; }
+.species-row:last-child { margin-bottom:6px; }
+.species-remove-spacer { width:55px; }
+@media (max-width: 760px) { .species-row { grid-template-columns:1fr; } .species-remove-spacer { display:none; } }
+.hotspot-layout { grid-template-columns: 260px minmax(420px,1fr); align-items: start; }
+.hotspot-main { display: grid; gap: 18px; min-width: 0; }
+.hotspot-list-card { position: sticky; top: 12px; max-height: calc(100vh - 48px); display: flex; flex-direction: column; overflow: hidden; }
+.hotspot-list-body { overflow: auto; min-height: 0; flex: 1; }
+.hotspot-map-card { padding: 12px; }
+.hotspot-detail-card { margin: 0; }
+.obs-detail-row { display:flex; align-items:center; justify-content:space-between; gap:16px; padding:13px 0; border-bottom:1px solid var(--border); }
+.obs-detail-row:last-child { border-bottom:0; }
+.obs-detail-meta { margin-top:4px; font-size:12px; }
+.hotspot-detail-summary { display:flex; align-items:baseline; gap:10px; margin-bottom:6px; }
+.hotspot-detail-summary strong { font-size:24px; }
+.button.small { padding:6px 9px; font-size:12px; text-decoration:none; }
+.leaflet-map { width:100%; height:540px; min-height:460px; border:1px solid var(--border); border-radius:14px; overflow:hidden; background:#eaf2f5; }
+.leaflet-map-unavailable { display:grid; place-items:center; padding:40px; box-sizing:border-box; }
+.map-status { margin-top:9px; color:var(--text-muted); font-size:12px; line-height:1.6; }
+@media (max-width: 1000px) {
+  .hotspot-layout { grid-template-columns: 1fr; }
+  .hotspot-list-card { position: static; max-height: none; }
+  .hotspot-list-body { max-height: 320px; }
+}
+.map-marker, .map-marker * { pointer-events: all; }
+.lexicon-item { position:relative; transition:transform .15s ease, box-shadow .15s ease, border-color .15s ease, background .15s ease, opacity .15s ease; cursor:pointer; }
+.lexicon-item:focus-visible { outline:3px solid rgba(53,116,88,.25); outline-offset:2px; }
+.lexicon-item.discovered { border:2px solid #4d9a73; background:linear-gradient(135deg,#f4fbf6,#ffffff); box-shadow:0 8px 20px rgba(53,116,88,.12); }
+.lexicon-item.discovered:hover { transform:translateY(-2px); box-shadow:0 12px 26px rgba(53,116,88,.18); }
+.lexicon-item.undiscovered { border:2px dashed #c8ced0; background:#f3f5f5; opacity:.72; filter:saturate(.55); }
+.lexicon-item.undiscovered:hover { opacity:.95; filter:none; background:#fafafa; border-color:#9da6aa; transform:translateY(-1px); }
+.lexicon-item.discovered::after { content:'已发现'; position:absolute; top:10px; right:10px; font-size:10px; font-weight:700; color:#246546; background:#dff2e6; padding:3px 7px; border-radius:999px; }
+.lexicon-item.undiscovered::after { content:'待发现'; position:absolute; top:10px; right:10px; font-size:10px; font-weight:600; color:#6b7478; background:#e6e9ea; padding:3px 7px; border-radius:999px; }
+.lexicon-detail-hint { margin-top:12px; font-size:12px; color:#6f787b; }
+.bird-detail-modal { max-width:860px; }
+.bird-detail-body { max-height:74vh; overflow:auto; }
+.bird-detail-image-wrap { margin:-4px -2px 18px; }
+.bird-detail-image { display:block; width:100%; max-height:330px; object-fit:cover; border-radius:12px; background:#eef2f1; }
+.detail-status { border-radius:10px; padding:10px 12px; margin-bottom:14px; font-size:13px; font-weight:650; }
+.detail-status-on { background:#dff2e6; color:#236345; border:1px solid #a9d7bb; }
+.detail-status-off { background:#eef0f1; color:#636c70; border:1px solid #d5dadd; }
+.detail-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; margin-bottom:16px; }
+.detail-stat { border:1px solid var(--border); border-radius:10px; padding:10px 12px; background:#fff; }
+.detail-stat span { display:block; color:var(--text-muted); font-size:12px; margin-bottom:5px; }
+.detail-stat strong { display:block; font-size:14px; }
+.bird-detail-section { border-top:1px solid var(--border); padding-top:15px; margin-top:15px; }
+.bird-detail-section h3 { margin:0 0 8px; font-size:15px; }
+.bird-detail-section p { margin:0 0 8px; line-height:1.75; font-size:14px; }
+.bird-detail-source { margin-top:18px; padding-top:12px; border-top:1px solid var(--border); color:var(--text-muted); font-size:11px; line-height:1.6; }
+@media (max-width: 700px) { .detail-grid { grid-template-columns:1fr; } }
+.bird-detail-section p + p { margin-top: 6px; }
+.bird-detail-source { word-break: break-word; }

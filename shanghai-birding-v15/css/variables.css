@@ -1,0 +1,14 @@
+:root {
+  --bg: #f4f6f5;
+  --surface: #ffffff;
+  --surface-muted: #f8faf9;
+  --text: #24322d;
+  --text-muted: #718079;
+  --border: #dfe6e2;
+  --accent: #2e6b4e;
+  --accent-soft: #e8f2ec;
+  --danger: #b34343;
+  --shadow: 0 8px 24px rgba(32, 55, 45, 0.08);
+  --sidebar-width: 240px;
+  --radius: 14px;
+}

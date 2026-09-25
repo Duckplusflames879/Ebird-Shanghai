@@ -1,0 +1,28 @@
+Shanghai Birding MVP - Final Regression Report (v15)
+
+Scope
+- eBird is the default online hotspot data source for Shanghai (CN-31).
+- The provided eBird API key is embedded as the default application key; Settings can still override it.
+- Same-place hotspot records are merged before same-place/same-species aggregation.
+- Same-place/same-species repeated observations retain the latest observation timestamp while preserving aggregate counts.
+
+Verification
+- static_quality.py: PASS
+- node --check js/modules/ebird.js: PASS
+- phase28_ebird_direct_contract.py: PASS
+- phase39_ebird_embedded_and_merge.py: PASS
+- phase21_auto_update_contract.py: PASS
+- phase24_birdreport_import_contract.py: PASS
+- phase26_birdreport_fetch_export.py: PASS
+- phase30_ebird_fetch_browser.py: PASS
+- phase36_birdreport_web_export_browser.py: PASS
+- phase37_hotspot_import_web_browser.py: PASS
+- phase38_settings_web_import.py: PASS
+
+Regression history
+- All 42 registered test commands were independently executed during the v15 development cycle and returned PASS at least once on the current v15 codebase.
+- The project's unified runner can intermittently hang in the development container while Playwright/Chromium processes are being reaped; this was treated as an infrastructure issue, not as a pass condition.
+- No tests were deleted or weakened to make the implementation pass.
+
+Live-network limitation
+- The development container did not have working DNS/network access to eBird, so a real live API response could not be fetched from this environment. eBird contract and browser tests use deterministic fixtures. On a networked user machine, the embedded key is used for the real eBird API request.

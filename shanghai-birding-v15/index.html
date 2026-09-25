@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>上海本地观鸟辅助系统</title>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/modules.css">
+</head>
+<body>
+  <div id="app-shell" class="app-shell">
+    <aside id="sidebar" class="sidebar"></aside>
+    <main class="main-content">
+      <header id="page-header" class="page-header"></header>
+      <section id="app" class="content-area" aria-live="polite"></section>
+    </main>
+  </div>
+  <div id="modal-root"></div>
+  <div id="toast-root" aria-live="polite" aria-atomic="true"></div>
+  <script src="data/birds.js"></script>
+  <script src="data/latest_data.js"></script>
+  <script src="data/bird_details.js"></script>
+  <script src="js/constants.js"></script>
+  <script src="js/auto_update.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/state.js"></script>
+  <script src="js/components/modal.js"></script>
+  <script src="js/components/toast.js"></script>
+  <script src="js/components/sidebar.js"></script>
+  <script src="js/components/autocomplete.js"></script>
+  <script src="js/modules/home.js"></script>
+  <script src="js/modules/weather.js"></script>
+  <script src="js/modules/ebird.js"></script>
+  <script src="js/modules/hotspots.js"></script>
+  <script src="js/modules/records.js"></script>
+  <script src="js/modules/bird_profiles.js"></script>
+  <script src="js/modules/lexicon.js"></script>
+  <script src="js/modules/settings.js"></script>
+  <script src="js/router.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

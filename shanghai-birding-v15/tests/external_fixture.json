@@ -1,0 +1,298 @@
+{
+  "version": 1,
+  "app": "shanghai-birding",
+  "updatedAt": "2026-09-02T08:30:00+08:00",
+  "weather": {
+    "forecast": [
+      {
+        "date": "2026-09-02",
+        "weather": "晴",
+        "weatherType": "clear",
+        "icon": "☀",
+        "tempMin": 27,
+        "tempMax": 33,
+        "windDirection": "东南",
+        "windLevel": 2
+      },
+      {
+        "date": "2026-09-03",
+        "weather": "多云",
+        "weatherType": "cloudy",
+        "icon": "☁",
+        "tempMin": 27,
+        "tempMax": 32,
+        "windDirection": "东南",
+        "windLevel": 2
+      },
+      {
+        "date": "2026-09-04",
+        "weather": "阵雨",
+        "weatherType": "rain",
+        "icon": "🌦",
+        "tempMin": 26,
+        "tempMax": 31,
+        "windDirection": "东",
+        "windLevel": 3
+      },
+      {
+        "date": "2026-09-05",
+        "weather": "小雨",
+        "weatherType": "rain",
+        "icon": "🌧",
+        "tempMin": 25,
+        "tempMax": 29,
+        "windDirection": "东北",
+        "windLevel": 3
+      },
+      {
+        "date": "2026-09-06",
+        "weather": "多云",
+        "weatherType": "cloudy",
+        "icon": "☁",
+        "tempMin": 26,
+        "tempMax": 30,
+        "windDirection": "北",
+        "windLevel": 2
+      },
+      {
+        "date": "2026-09-07",
+        "weather": "晴",
+        "weatherType": "clear",
+        "icon": "☀",
+        "tempMin": 26,
+        "tempMax": 32,
+        "windDirection": "东",
+        "windLevel": 2
+      },
+      {
+        "date": "2026-09-08",
+        "weather": "晴",
+        "weatherType": "clear",
+        "icon": "☀",
+        "tempMin": 27,
+        "tempMax": 33,
+        "windDirection": "东南",
+        "windLevel": 2
+      }
+    ]
+  },
+  "hotspots": [
+    {
+      "id": "dongtan",
+      "name": "崇明东滩",
+      "district": "崇明区",
+      "lat": 31.52,
+      "lon": 121.99,
+      "observations": [
+        {
+          "speciesId": "cn_egret",
+          "speciesName": "白鹭",
+          "frequency": 2
+        },
+        {
+          "speciesId": "cn_grey_heron",
+          "speciesName": "苍鹭",
+          "frequency": 1
+        }
+      ],
+      "records": [
+        {
+          "observationId": "fixture-dongtan-1",
+          "speciesId": "cn_egret",
+          "speciesName": "白鹭",
+          "observedAt": "2026-09-02 07:30:00",
+          "latestCount": 3,
+          "totalCount": 3,
+          "occurrenceCount": 2,
+          "sourceUrl": "https://www.birdreport.cn/home/search/page.html"
+        },
+        {
+          "observationId": "fixture-dongtan-2",
+          "speciesId": "cn_grey_heron",
+          "speciesName": "苍鹭",
+          "observedAt": "2026-09-01 08:00:00",
+          "latestCount": 2,
+          "totalCount": 2,
+          "occurrenceCount": 1,
+          "sourceUrl": "https://www.birdreport.cn/home/search/page.html"
+        }
+      ],
+      "observationCount": 2,
+      "sourceObservationCount": 3,
+      "observationWindow": {
+        "start": "2026-08-27",
+        "end": "2026-09-02"
+      },
+      "source": "中国观鸟记录中心",
+      "sourceUrl": "https://www.birdreport.cn/home/search/page.html",
+      "discovery": "known_site"
+    },
+    {
+      "id": "nanhui",
+      "name": "南汇东滩",
+      "district": "浦东新区",
+      "lat": 30.9,
+      "lon": 121.95,
+      "observations": [
+        {
+          "speciesId": "cn_white_breasted_waterhen",
+          "speciesName": "白胸苦恶鸟",
+          "frequency": 1
+        },
+        {
+          "speciesId": "cn_great_egret",
+          "speciesName": "大白鹭",
+          "frequency": 1
+        }
+      ],
+      "records": [
+        {
+          "observationId": "fixture-nanhui-1",
+          "speciesId": "cn_white_breasted_waterhen",
+          "speciesName": "白胸苦恶鸟",
+          "observedAt": "2026-09-02 06:45:00",
+          "latestCount": 2,
+          "totalCount": 2,
+          "occurrenceCount": 1,
+          "sourceUrl": "https://www.birdreport.cn/home/search/page.html"
+        },
+        {
+          "observationId": "fixture-nanhui-2",
+          "speciesId": "cn_great_egret",
+          "speciesName": "大白鹭",
+          "observedAt": "2026-08-31 07:20:00",
+          "latestCount": 4,
+          "totalCount": 4,
+          "occurrenceCount": 1,
+          "sourceUrl": "https://www.birdreport.cn/home/search/page.html"
+        }
+      ],
+      "observationCount": 2,
+      "sourceObservationCount": 2,
+      "observationWindow": {
+        "start": "2026-08-27",
+        "end": "2026-09-02"
+      },
+      "source": "中国观鸟记录中心",
+      "sourceUrl": "https://www.birdreport.cn/home/search/page.html",
+      "discovery": "known_site"
+    },
+    {
+      "id": "binjiang",
+      "name": "滨江森林公园",
+      "district": "浦东新区",
+      "lat": 31.48,
+      "lon": 121.58,
+      "observations": [
+        {
+          "speciesId": "cn_bulbul",
+          "speciesName": "白头鹎",
+          "frequency": 2
+        },
+        {
+          "speciesId": "cn_black_naped_oriole",
+          "speciesName": "黑枕黄鹂",
+          "frequency": 1
+        }
+      ],
+      "records": [
+        {
+          "observationId": "fixture-binjiang-1",
+          "speciesId": "cn_bulbul",
+          "speciesName": "白头鹎",
+          "observedAt": "2026-09-02 08:30:00",
+          "latestCount": 5,
+          "totalCount": 5,
+          "occurrenceCount": 2,
+          "sourceUrl": "https://www.birdreport.cn/home/search/page.html"
+        },
+        {
+          "observationId": "fixture-binjiang-2",
+          "speciesId": "cn_black_naped_oriole",
+          "speciesName": "黑枕黄鹂",
+          "observedAt": "2026-09-01 09:10:00",
+          "latestCount": 1,
+          "totalCount": 1,
+          "occurrenceCount": 1,
+          "sourceUrl": "https://www.birdreport.cn/home/search/page.html"
+        }
+      ],
+      "observationCount": 2,
+      "sourceObservationCount": 3,
+      "observationWindow": {
+        "start": "2026-08-27",
+        "end": "2026-09-02"
+      },
+      "source": "中国观鸟记录中心",
+      "sourceUrl": "https://www.birdreport.cn/home/search/page.html",
+      "discovery": "known_site"
+    },
+    {
+      "id": "gongqing",
+      "name": "共青森林公园",
+      "district": "杨浦区",
+      "lat": 31.35,
+      "lon": 121.55,
+      "observations": [
+        {
+          "speciesId": "cn_bulbul",
+          "speciesName": "白头鹎",
+          "frequency": 1
+        },
+        {
+          "speciesId": "cn_tree_sparrow",
+          "speciesName": "麻雀",
+          "frequency": 1
+        }
+      ],
+      "records": [
+        {
+          "observationId": "fixture-gongqing-1",
+          "speciesId": "cn_bulbul",
+          "speciesName": "白头鹎",
+          "observedAt": "2026-09-02 07:50:00",
+          "latestCount": 3,
+          "totalCount": 3,
+          "occurrenceCount": 1,
+          "sourceUrl": "https://www.birdreport.cn/home/search/page.html"
+        },
+        {
+          "observationId": "fixture-gongqing-2",
+          "speciesId": "cn_tree_sparrow",
+          "speciesName": "麻雀",
+          "observedAt": "2026-09-02 07:40:00",
+          "latestCount": 8,
+          "totalCount": 8,
+          "occurrenceCount": 1,
+          "sourceUrl": "https://www.birdreport.cn/home/search/page.html"
+        }
+      ],
+      "observationCount": 2,
+      "sourceObservationCount": 2,
+      "observationWindow": {
+        "start": "2026-08-27",
+        "end": "2026-09-02"
+      },
+      "source": "中国观鸟记录中心",
+      "sourceUrl": "https://www.birdreport.cn/home/search/page.html",
+      "discovery": "known_site"
+    }
+  ],
+  "sourceStatus": "ok",
+  "hotspotData": {
+    "source": "中国观鸟记录中心",
+    "sourceUrl": "https://www.birdreport.cn/home/search/page.html",
+    "observationWindow": {
+      "start": "2026-08-27",
+      "end": "2026-09-02"
+    },
+    "retrievedAt": "2026-09-02T08:30:00+08:00",
+    "rawReportCount": 6,
+    "rawTaxonRecordCount": 8,
+    "displayedRecordCount": 8,
+    "sourceObservationCount": 9,
+    "droppedUnknownTimeReportCount": 0,
+    "droppedNonChineseTaxonCount": 0,
+    "scope": "上海市行政区域，公开观鸟记录中心记录"
+  }
+}

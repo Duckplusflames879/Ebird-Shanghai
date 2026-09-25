@@ -1,0 +1,129 @@
+{
+  "format": "shanghai-birding-ebird-7d",
+  "version": 1,
+  "app": "shanghai-birding",
+  "source": "eBird",
+  "sourceUrl": "https://ebird.org/region/CN-31",
+  "regionCode": "CN-31",
+  "generatedAt": "2026-09-02T09:00:00+08:00",
+  "retrievedAt": "2026-09-02T09:00:00+08:00",
+  "observationWindow": {
+    "start": "2026-08-27",
+    "end": "2026-09-02"
+  },
+  "hotspotData": {
+    "source": "eBird",
+    "sourceUrl": "https://ebird.org/region/CN-31",
+    "regionCode": "CN-31",
+    "observationWindow": {
+      "start": "2026-08-27",
+      "end": "2026-09-02"
+    },
+    "retrievedAt": "2026-09-02T09:00:00+08:00",
+    "sourceObservationCount": 5,
+    "hotspotCount": 2,
+    "note": "fixture"
+  },
+  "hotspots": [
+    {
+      "id": "dongtan",
+      "name": "崇明东滩",
+      "district": "崇明区",
+      "lat": 31.52,
+      "lon": 121.99,
+      "observations": [
+        {
+          "speciesId": "cn_egret",
+          "speciesName": "白鹭",
+          "frequency": 2
+        },
+        {
+          "speciesId": "cn_grey_heron",
+          "speciesName": "苍鹭",
+          "frequency": 1
+        }
+      ],
+      "records": [
+        {
+          "observationId": "fixture-dongtan-1",
+          "speciesId": "cn_egret",
+          "speciesName": "白鹭",
+          "observedAt": "2026-09-02 07:30:00",
+          "latestCount": 3,
+          "totalCount": 3,
+          "occurrenceCount": 2,
+          "sourceUrl": "https://ebird.org/region/CN-31"
+        },
+        {
+          "observationId": "fixture-dongtan-2",
+          "speciesId": "cn_grey_heron",
+          "speciesName": "苍鹭",
+          "observedAt": "2026-09-01 08:00:00",
+          "latestCount": 2,
+          "totalCount": 2,
+          "occurrenceCount": 1,
+          "sourceUrl": "https://ebird.org/region/CN-31"
+        }
+      ],
+      "observationCount": 2,
+      "sourceObservationCount": 3,
+      "observationWindow": {
+        "start": "2026-08-27",
+        "end": "2026-09-02"
+      },
+      "source": "eBird",
+      "sourceUrl": "https://ebird.org/region/CN-31",
+      "discovery": "known_site"
+    },
+    {
+      "id": "nanhui",
+      "name": "南汇东滩",
+      "district": "浦东新区",
+      "lat": 30.9,
+      "lon": 121.95,
+      "observations": [
+        {
+          "speciesId": "cn_white_breasted_waterhen",
+          "speciesName": "白胸苦恶鸟",
+          "frequency": 1
+        },
+        {
+          "speciesId": "cn_great_egret",
+          "speciesName": "大白鹭",
+          "frequency": 1
+        }
+      ],
+      "records": [
+        {
+          "observationId": "fixture-nanhui-1",
+          "speciesId": "cn_white_breasted_waterhen",
+          "speciesName": "白胸苦恶鸟",
+          "observedAt": "2026-09-02 06:45:00",
+          "latestCount": 2,
+          "totalCount": 2,
+          "occurrenceCount": 1,
+          "sourceUrl": "https://ebird.org/region/CN-31"
+        },
+        {
+          "observationId": "fixture-nanhui-2",
+          "speciesId": "cn_great_egret",
+          "speciesName": "大白鹭",
+          "observedAt": "2026-08-31 07:20:00",
+          "latestCount": 4,
+          "totalCount": 4,
+          "occurrenceCount": 1,
+          "sourceUrl": "https://ebird.org/region/CN-31"
+        }
+      ],
+      "observationCount": 2,
+      "sourceObservationCount": 2,
+      "observationWindow": {
+        "start": "2026-08-27",
+        "end": "2026-09-02"
+      },
+      "source": "eBird",
+      "sourceUrl": "https://ebird.org/region/CN-31",
+      "discovery": "known_site"
+    }
+  ]
+}
