@@ -4,9 +4,7 @@
 
 ## 直接运行
 
-可以直接双击 `index.html` 打开应用。观鸟点默认使用程序内置的 eBird API Key，进入“观鸟点”页面会先展示本地缓存并尽快打开地图，再在后台按 10 分钟节流检查更新；手动“刷新数据”会强制重新获取并就地更新标记。设置页可输入新的个人 API Key 覆盖默认配置，但**不会在界面中显示完整 Key**（仅显示是否使用内置/自定义，以及自定义 Key 末 4 位掩码）。
-
-eBird 官方公共 API 要求使用个人 API Key。当前版本将默认 API Key 内置在前端源码中；设置页已隐藏完整内容，但任何人仍可从 `js/modules/ebird.js` 或浏览器网络请求中看到该 Key。公开部署到 GitHub Pages 时尤其如此。若要撤销或更换，应在 eBird 后台重新生成个人 Key，并在设置页覆盖默认配置。
+可以直接双击 `index.html` 打开应用。观鸟点默认使用程序内置的 eBird API Key，进入“观鸟点”页面会先展示本地缓存并尽快打开地图，再在后台按 10 分钟节流检查更新；手动“刷新数据”会强制重新获取并就地更新标记。设置页可输入新的个人 API Key 覆盖默认配置。
 
 如果不希望联网获取，也可以在“设置 → 观鸟点数据”中导入 eBird 最近 7 日 JSON。导入文件与浏览器在线获取使用完全相同的数据格式。
 
@@ -32,18 +30,6 @@ eBird 官方公共 API 要求使用个人 API Key。当前版本将默认 API Ke
 在线方式不需要运行任何 Python。程序启动后进入“观鸟点”会自动执行 `EBirdData.fetchRecent()`；内置 Key 会在未保存覆盖 Key 时自动使用，更新成功后直接写入浏览器本地缓存。
 
 离线交换方式使用“导出当前 eBird JSON”和“导入 eBird JSON”。导入文件格式固定为 `shanghai-birding-ebird-7d`，版本号为 1。
-
-项目中的旧 `start_app.py`、中国观鸟记录中心更新脚本以及相关 BAT 文件仍作为兼容性遗留工具保留，但不参与默认 eBird 在线读取。
-
-## 测试
-
-完整测试：
-
-```bash
-python3 run_tests.py
-```
-
-测试覆盖页面路由、数据层、单条记录多鸟种 CRUD、输入联想、表单校验失败保留已填写内容、观鸟点列表选择、图鉴联动、首页聚合、多条备忘增删与自动保存、天气、Leaflet 地图初始化/标记/列表联动/资源加载、外部数据生成与失败保护、备份恢复、清空确认以及最终端到端链路。
 
 ## MVP 范围
 
@@ -79,8 +65,6 @@ python3 run_tests.py
 
 点击观鸟点后，Leaflet 地图下方会显示该地点按鸟种聚合后的逐条最近观测记录。
 
-“设置 → 观鸟点数据”仍保留 eBird JSON 导入/导出和中国观鸟记录中心兼容导入，但默认在线来源已经切换为 eBird。
-
 运行时的数据处理规则：
 
 - 数据源：eBird 公共 API，区域代码 `CN-31`。
@@ -97,10 +81,4 @@ python3 run_tests.py
 - eBird 数据下载/API：https://support.ebird.org/en/support/solutions/articles/48000838205-download-ebird-data
 - eBird 上海区域：https://ebird.org/region/CN-31
 
-观测频次表示来源记录次数，不等同于实际鸟只数量。
-
-## 部署到 GitHub Pages
-
-本仓库为纯静态站点。在 GitHub 仓库 **Settings → Pages** 中将 Source 设为 `main` 分支、`/`（根目录）即可发布。站点地址一般为：
-
-`https://yuqianmemeee.github.io/shanghai-birding/`
+观测频次表示来源记录次数，不等同于实际鸟的数量。
