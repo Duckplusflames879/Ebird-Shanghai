@@ -1,8 +1,4 @@
-# 上海本地观鸟辅助系统
-
-这是一个面向电脑浏览器的本地单机 SPA。个人观鸟记录与多条备忘保存在浏览器本地；天气页面默认直接从 Open-Meteo API 获取上海实时天气与未来 7 日预报；网络不可用时自动回退到本地快照。观鸟点默认直接从 eBird 公共 API 获取上海 CN-31 最近 7 日热点观测。热点地图使用本地 Leaflet 1.9.4 + 高德底图（国内加载更快）；高德不可用时自动回退 OpenStreetMap。eBird 坐标为 WGS-84，使用高德底图时会自动转换为 GCJ-02，避免标记偏移。地图库优先从 `vendor/leaflet/` 本地加载，不依赖海外 CDN。
-
-## 直接运行
+# 上海本地观鸟辅助系统/Ebird-Shanghai
 
 可以直接双击 `index.html` 打开应用。观鸟点默认使用程序内置的 eBird API Key，进入“观鸟点”页面会先展示本地缓存并尽快打开地图，再在后台按 10 分钟节流检查更新；手动“刷新数据”会强制重新获取并就地更新标记。设置页可输入新的个人 API Key 覆盖默认配置。
 
@@ -10,11 +6,9 @@
 
 ## eBird 观鸟点数据
 
-观鸟点数据统一使用 eBird 上海区域 `CN-31` 的最近 7 日热点观测。页面直接从 eBird API 获取，不再把 Python 抓取脚本作为网页数据链路的一部分。eBird 官方还提供带地理坐标的 Hotspot 列表和区域代码体系。
-
+观鸟点数据统一使用 eBird 上海区域 `CN-31` 的最近 7 日热点观测。页面直接从 eBird API 获取，eBird 官方还提供带地理坐标的 Hotspot 列表和区域代码体系。
 查询参数固定为最近 7 日、热点观测、详细结果和简体中文鸟名；进入系统后的数据会先保存在浏览器本地缓存，以便下一次打开时优先显示上次成功数据，再按节流规则检查更新。
-
-“设置 → 观鸟点数据”提供三个操作：保存 eBird API Key、获取最近 7 日数据、导出/导入 eBird JSON。导入只更新观鸟点外部数据，不修改个人观鸟记录、图鉴状态或备忘录。
+导入只更新观鸟点外部数据，不修改个人观鸟记录、图鉴状态或备忘录。
 
 ## 更新方式
 
@@ -27,8 +21,7 @@
 `data/birds.js` 使用当前上传的 544 条上海区域鸟种版本。`data/bird_details.js` 按这份 birds.js 逐条生成 544 份离线详细物种卡。区域覆盖数量以 Avibase 的 Shanghai checklist 为主要基准（页面标示 544 species，最近修改于 2026-02-17）；上海市政府公开信息显示截至 2025 年底上海已记录 543 种野生鸟类。由于不同名录采用的分类体系可能存在 1 种左右的差异，后续更新应以选定权威名录的最新版本为准。
 
 数据 schema 仍保持 `id/name/family/genus` 不变。新增条目使用基于中文名称的稳定哈希 ID；原有条目的 ID 未修改，因此旧记录不会因扩充图鉴而失去关联。
-
-参考：
+Reference:
 - Avibase Shanghai checklist: https://avibase.bsc-eoc.org/checklist.jsp?lang=EN&list=howardmoore&region=cnsn
 - 上海市人民政府：上海记录野生鸟类达到 543 种（2026-05-26）
 
@@ -40,20 +33,16 @@
 
 ## 观鸟点实时数据与点位合并
 
-观鸟点默认数据源为 eBird 公共 API 的上海区域 `CN-31`。eBird 官方说明公共 API 用于网页和移动应用的实时数据访问；Hotspot 列表可通过 API 获得，并要求使用个人 API Key。
+观鸟点默认数据源为 eBird 公共 API 的上海区域 `CN-31`。
 
 查询使用最近 7 日、热点观测、详细结果和简体中文鸟名。所有记录进入前端后都会经过统一地点和鸟种归一化。
-
-同一地点的合并规则依次为：相同 eBird `locId` 直接合并；若 `locId` 不同但规范化后的地点名相同且坐标相距不超过 750 米，则合并；若名称也不同但坐标相距不超过 150 米，则认为是同一物理地点并合并。这样可以避免同一地点因为名称或 `locId` 差异产生多个条目，同时保留相邻但不同的 eBird Hotspot。
-
-合并完成后，再按“地点 + 鸟种”聚合。若同一鸟种在同一点位出现多次，只显示一条，并以所有来源记录中最晚的 `obsDt` 作为最近观测时间，同时保留累计来源次数、最近一次数量和累计记录数量。缺少具体观测日期或时间的记录不会显示。
 
 所有观鸟点和鸟种在界面中均使用中文；eBird 没有返回中文鸟名的记录不会进入显示数据。
 
 点击观鸟点后，Leaflet 地图下方会显示该地点按鸟种聚合后的逐条最近观测记录。
 
 
-参考：
+More reference: 
 - eBird Hotspot FAQ：https://support.ebird.org/en/support/solutions/articles/48001009443-ebird-hotspot-faqs
 - eBird 数据下载/API：https://support.ebird.org/en/support/solutions/articles/48000838205-download-ebird-data
 - eBird 上海区域：https://ebird.org/region/CN-31
